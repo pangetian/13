@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.clock.mapper.ActivityMapper">
+    <insert id="insertActivityInfo" parameterType="com.clock.entity.Activity"
+            keyProperty="activity_id">
+        insert into activtiy(title,start_datetime,end_datetime,
+        pos_name,pos_latitude,pos_longtitude,distance,open_id)
+        values(#{title},#{start_datetime},#{end_datetime},#{pos_name},#{pos_latitude},
+        #{pod_longtitude},#{distance},#{open_id})
+    </insert>
+    <select id="getActivityListByWx_open_id" parameterType="string"
+            resultType="com.clock.entity.Activity">
+        select * from activtiy
+        where open_id=${wx_open_id}
+        limit ${start},${page_size}
+    </select>
+</mapper>
